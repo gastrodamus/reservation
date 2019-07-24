@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "webpack-dev": "webpack",
-    "server-dev": "node server/index.js",
-    "database": "mysql -h db -uroot -ppassword < server/db/schema.sql",
+    "build": "webpack -d --w",
+    "start": "node server/index.js",
+    "database": "mysql -uroot < server/db/schema.sql",
     "seed": "node ./server/db/seed.js",
     "lint": "eslint --ext .js --ext .jsx . --fix",
     "test": "jest"

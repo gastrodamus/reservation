@@ -3,6 +3,7 @@ import Calendar from './Calendar.jsx';
 import moment from 'moment';
 import axios from 'axios';
 import styles from '../style/App.css'
+import { DH_CHECK_P_NOT_SAFE_PRIME } from 'constants';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class App extends React.Component {
 
     this.onChosenHandler = this.onChosenHandler.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +27,10 @@ class App extends React.Component {
     let restaurantId = urlStrings[urlStrings.length - 2];
     this.setState({ restaurantId });
   }
+
+  onSubmitHandler(event) {
+    event.preventDefault();
+  };
 
   onChosenHandler(unix) {
     var newChosenDay = moment.unix(unix);
@@ -71,6 +77,7 @@ class App extends React.Component {
   }
  
   render() {
+    let { onSubmitHandler } = this;
     return(
       <div className={styles.islandContainer}>
           <h3 className={styles.reservationHeader}>
@@ -79,18 +86,22 @@ class App extends React.Component {
             </span>
             <span className={styles.header}>Make a Reservation</span>
           </h3>
-          <form className='reservation-form-container'>
+          <form className='reservation-form-container' onSubmit={onSubmitHandler}>
             <div className='reservation-form'>
               <div className='reservation-fields'>
                 <div className='calender-picker'>
-                  <Calendar chosenDay={this.state.chosenDay} onChosenHandler={this.onChosenHandler}/>
+                  <Calendar 
+                    chosenDay={this.state.chosenDay}
+                    onChosenHandler={this.onChosenHandler}/>
                 </div>
                 <div className={styles.timePartySizeContainer}>
                   <span className={styles.timePicker}>
                     <span className={styles.clockIcon} aria-hidden={true}>
                       <i className="far fa-clock"></i>
                     </span>
-                    <select id='timePicker' className={styles.selectWithoutStyle} defaultValue='1900' onChange={(event) => {this.onChangeHandler('chosenTime', event.target.value)}}>
+                    <select id='timePicker' className={styles.selectWithoutStyle} 
+                      defaultValue='1900' 
+                      onChange={(event) => {this.onChangeHandler('chosenTime', event.target.value)}}>
                       <option value='1800'>06:00 pm</option>
                       <option value='1900'>07:00 pm</option>
                       <option value='2000'>08:00 pm</option>
@@ -103,7 +114,9 @@ class App extends React.Component {
                     <span className={styles.partySizeIcon}>
                       <i className="fas fa-user-friends"></i>
                     </span>
-                    <select id='partySizePicker' className={styles.selectWithoutStyle} defaultValue='4' onChange={(event) => {this.onChangeHandler('partyNum', event.target.value)}}>
+                    <select id='partySizePicker' 
+                      className={styles.selectWithoutStyle} 
+                      defaultValue='4' onChange={(event) => {this.onChangeHandler('partyNum', event.target.value)}}>
                       <option value='1'>1 person</option>
                       <option value='2'>2 people</option>
                       <option value='3'>3 people</option>
