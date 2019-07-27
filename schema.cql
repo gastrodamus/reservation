@@ -7,8 +7,7 @@ CREATE TABLE reservations (
   min_party tinyint,
   max_party tinyint,
   max tinyint,
-  day int,
-  time smallint,
+  time int,
   party tinyint,
-  PRIMARY KEY (id, day, time, party)
+  PRIMARY KEY (id, time, party)
 );

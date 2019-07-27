@@ -27,9 +27,9 @@ const randomRestaurant = () => {
   let min_party = 2 + Math.floor(Math.random() * 3); // 2-4
   let max_party = 4 + Math.floor(Math.random() * 5); // 4-8
   let max = 5 * (3 + Math.floor(Math.random() * 8)); //15 to 50 in increments of 5
-  restaurant.push(count, restaurant_name, open, close, step, min_party, max_party, max);
+  restaurant.push(count, restaurant_name, open, close, step, min_party, max_party, max, 0, 0);
   restaurant = restaurant.join(',');
-  restauraunt = restaurant + '\n';
+  restaurant = restaurant + '\n';
 
   const likelihood1 = Math.random();
    let reservation_count;
