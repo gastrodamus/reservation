@@ -23,8 +23,8 @@
 ### Listings
 | HTTP Method   | Endpoint                     | Description                                             |
 |:--------------|:-----------------------------|:--------------------------------------------------------|
-| GET           | /api/reservation/:listingid  | Return details about a specific listing                 |
 | POST          | /api/reservation/            | Create a new restaurant listing                         |
+| GET           | /api/reservation/:listingid  | Return details about a specific listing                 |
 | PUT           | /api/reservation/:listingid  | Update and replace details for a specific listing       |
 | PATCH         | /api/reservation/:listingid  | Update and modify details for a specific listing        |
 | DELETE        | /api/reservation/:listingid  | Delete a specific listing                               |
