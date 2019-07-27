@@ -3,7 +3,7 @@ CREATE TABLE reservations (
   restaurant_name varchar,
   open smallint,
   close smallint,
-  step tinyint,
+  step smallint,
   min_party tinyint,
   max_party tinyint,
   max tinyint,

@@ -2,3 +2,5 @@ node_modules
 package-lock.json
 client/dist/bundle.js
 coverage
+reservations.csv
+restaurants.csv
