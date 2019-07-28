@@ -9,5 +9,6 @@ CREATE TABLE reservations (
   max tinyint,
   time int,
   party tinyint,
-  PRIMARY KEY (id, time, party)
+  reservation_id smallint, 
+  PRIMARY KEY (id, reservation_id, time, party)
 );

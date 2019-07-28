@@ -27,11 +27,11 @@ const randomRestaurant = () => {
   let min_party = 2 + Math.floor(Math.random() * 3); // 2-4
   let max_party = 4 + Math.floor(Math.random() * 5); // 4-8
   let max = 5 * (3 + Math.floor(Math.random() * 8)); //15 to 50 in increments of 5
-  restaurant.push(count, restaurant_name, open, close, step, min_party, max_party, max, 0, 0);
+  restaurant.push(count, restaurant_name, open, close, step, min_party, max_party, max, 0, 0, 0);
   restaurant = restaurant.join(',');
   restaurant = restaurant + '\n';
 
-  const likelihood1 = Math.random();
+  let likelihood1 = Math.random();
    let reservation_count;
    if (likelihood1 > 0.9) {
      reservation_count = 90 + Math.floor(Math.random()*20);
@@ -44,10 +44,12 @@ const randomRestaurant = () => {
   //45% will have 10-20
   //5% will have 70-90
   let reservations = '';
+  let timestamp;
+  let reservation_id = 1;
   //party size, time, day
   for (let i = 0; i < reservation_count; i++) {
-    const reservationsArr = [];
-    const likelihood = Math.random();
+    let reservationsArr = [];
+    let likelihood = Math.random();
     if (likelihood > 0.3) {
       timestamp = startTime + (Math.floor(Math.random()*3) * 3600) + (Math.floor(Math.random()*4) * 86400)
     } else {
@@ -55,10 +57,11 @@ const randomRestaurant = () => {
       timestamp = originalTime + (open * 3600) + (Math.floor(Math.random()*timeframe)*3600);
     }
     const reservation_size = randomRange(min_party, max_party + 1);
-    reservationsArr.push(count, timestamp, reservation_size);
+    reservationsArr.push(count, reservation_id, timestamp, reservation_size);
     let reservationEntry = reservationsArr.join(',');
     reservationEntry += '\n';
     reservations += reservationEntry;
+    reservation_id += 1;
   }
   //restaurant will be a string, reservations will be a massive string
   return [restaurant, reservations];
@@ -66,7 +69,7 @@ const randomRestaurant = () => {
 
 var data = 0;
 const writeAll = (restaurantWriter, reservationWriter, data, encoding, callback) => {
-  let i = 10000;
+  let i = 10000000;
   write();
   function write() {
     let ok = true;
