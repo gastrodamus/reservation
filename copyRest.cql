@@ -8,7 +8,8 @@ COPY reservations (
   max_party,
   max,
   time,
-  party
+  party,
+  user 
 )
  FROM 
  '/Users/josefberthoud/Desktop/SDC/reservation/restaurants.csv' 

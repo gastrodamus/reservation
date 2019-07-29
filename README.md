@@ -24,10 +24,10 @@
 | HTTP Method   | Endpoint                     | Description                                             |
 |:--------------|:-----------------------------|:--------------------------------------------------------|
 | POST          | /api/reservation/            | Create a new restaurant listing                         |
-| GET           | /api/reservation/:listingid  | Return details about a specific listing                 |
-| PUT           | /api/reservation/:listingid  | Update and replace details for a specific listing       |
-| PATCH         | /api/reservation/:listingid  | Update and modify details for a specific listing        |
-| DELETE        | /api/reservation/:listingid  | Delete a specific listing                               |
+| GET           | /api/:id/reservation         | Return details about a specific listing                 |
+| PUT           | /api/:id/reservation         | Update and replace details for a specific listing       |
+| PATCH         | /api/:id/reservation         | Update and modify details for a specific listing        |
+| DELETE        | /api/:id/reservation         | Delete a specific listing                               |
 
 ## Requirements
 

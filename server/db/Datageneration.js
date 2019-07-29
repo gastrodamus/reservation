@@ -57,7 +57,7 @@ const randomRestaurant = () => {
       timestamp = originalTime + (open * 3600) + (Math.floor(Math.random()*timeframe)*3600);
     }
     const reservation_size = randomRange(min_party, max_party + 1);
-    reservationsArr.push(count, reservation_id, timestamp, reservation_size);
+    reservationsArr.push(count, timestamp, reservation_size, reservation_id);
     let reservationEntry = reservationsArr.join(',');
     reservationEntry += '\n';
     reservations += reservationEntry;
