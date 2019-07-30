@@ -2,7 +2,8 @@ COPY reservations (
   id, 
   time, 
   party,
-  user 
+  user,
+  code  
 ) 
  FROM
  '/Users/josefberthoud/Desktop/SDC/reservation/reservations.csv'

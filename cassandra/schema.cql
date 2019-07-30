@@ -25,6 +25,6 @@ CREATE TABLE reservations (
   time int,
   party tinyint,
   user varchar, 
-  TIMEUUID, 
+  code int, 
   PRIMARY KEY (id, user)
 );

@@ -5,6 +5,7 @@ const reservationWriter = fs.createWriteStream('reservations.csv');
 
 var count = 0;
 var originalTime = 1564642800; // August 1st 2019 at 12 AM Pacific in Unix Time
+var code = 1564642800;
 var startTime = 1564707600 // August 1st 2019 at 6 PM Pacific in Unix Time
 function randomRange(min, max) { // random number between min (inclusive) and max (exclusive);
  return Math.floor(Math.random() * (max - min)) + min;
@@ -27,7 +28,8 @@ const randomRestaurant = () => {
   let min_party = 2 + Math.floor(Math.random() * 3); // 2-4
   let max_party = 4 + Math.floor(Math.random() * 5); // 4-8
   let max = 5 * (3 + Math.floor(Math.random() * 8)); //15 to 50 in increments of 5
-  restaurant.push(count, restaurant_name, open, close, step, min_party, max_party, max, 0, 0, 0);
+  restaurant.push(count, restaurant_name, open, close, step, min_party, max_party, max, 0, 0, 0, code);
+  code--;
   restaurant = restaurant.join(',');
   restaurant = restaurant + '\n';
 
@@ -57,7 +59,9 @@ const randomRestaurant = () => {
       timestamp = originalTime + (open * 3600) + (Math.floor(Math.random()*timeframe)*3600);
     }
     const reservation_size = randomRange(min_party, max_party + 1);
-    reservationsArr.push(count, timestamp, reservation_size, reservation_id);
+    //add now()--;
+    code--;
+    reservationsArr.push(count, timestamp, reservation_size, faker.internet.userName(), code);
     let reservationEntry = reservationsArr.join(',');
     reservationEntry += '\n';
     reservations += reservationEntry;
