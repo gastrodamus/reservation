@@ -8,7 +8,9 @@
     "start": "node server/index.js",
     "database": "mysql -uroot < server/db/schema.sql",
     "seed": "node ./server/db/seed.js",
-    "keaton": "node ./server/db/Datageneration.js",
+    "cass:csv": "node ./server/db/cassSeed.js",
+    "pg:csv": "node ./server/db/pgSeed.js",
+    "pg:seed": "psql -d gastrodamus < ./postgres/createAndCopy.sql",
     "lint": "eslint --ext .js --ext .jsx . --fix",
     "test": "jest"
   },
