@@ -41,3 +41,5 @@ COPY reservations (
 DELIMITER ',';
 
 ALTER TABLE reservations ADD CONSTRAINT fk_links_res_rest FOREIGN KEY (id) references restaurants(id);
+
+CREATE INDEX res_by_rest ON reservations(id);

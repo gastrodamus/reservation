@@ -14,12 +14,7 @@ function randomRange(min, max) { // random number between min (inclusive) and ma
 //and 20-70 data entries for each
 const randomRestaurant = () => {
   count += 1;
-  //one line of csv for restaurant
-  //comma separated values
-  //with a \n at the end of each line
-  //make array of values
-  //join with commas which casts all the numbers to strings
-  //add a '\n' behind
+  
   let restaurant = [];
   let restaurant_name = faker.name.lastName();
   let open = 5 + Math.floor(Math.random() * 10); // opens between 500 and 1400
@@ -59,7 +54,7 @@ const randomRestaurant = () => {
       timestamp = originalTime + (open * 3600) + (Math.floor(Math.random()*timeframe)*3600);
     }
     const reservation_size = randomRange(min_party, max_party + 1);
-    //add now()--;
+  
     code--;
     reservationsArr.push(count, timestamp, reservation_size, faker.internet.userName(), code);
     let reservationEntry = reservationsArr.join(',');
