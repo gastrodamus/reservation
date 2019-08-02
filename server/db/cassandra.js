@@ -40,7 +40,31 @@ const postReservation = (req, res) => {
     })
 };
 
+const changeReservation = (req, res) => {
+  let code = Math.floor(Date.now() / 1000);
+  let { user } = req.query;
+  let { id } = req.params;
+  // needs the id
+  // needs the username
+  // adjusts time? probably most common use case
+  // or optionall have user request to change a specific column using the query param
+  // i.e. change username or change time or change party size
+  // just change time to the current time on insertion
+  let query = `update reservations set time = ${code} where user = '${user}' and id = ${id} IF EXISTS;`
+  client.execute(query)
+    .then(result => {
+      if (result) {
+        res.send(200);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      res.send(500);
+    })
+};
+
 module.exports = {
   getReservation,
   postReservation,
+  changeReservation,
 }
