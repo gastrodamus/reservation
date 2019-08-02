@@ -1,6 +1,18 @@
 
 const client = require('./index.js');
 
+const getRestaurantInfo = (req, res) => {
+  let { id } = req.params;
+  let query = `select * from reservations where id=${id} limit 1;`;
+  client.execute(query)
+    .then(result => {
+      res.send(result.rows[0]);
+    })
+    .catch(err => {
+      console.log(err);
+      res.send(500);
+    })
+};
 // takes input in the form of a unix time for a requested reservation time
 // returns all current slots within 3 hours of suggested time
 const getReservation = (req, res) => {
@@ -39,7 +51,6 @@ const postReservation = (req, res) => {
       res.send(500);
     })
 };
-
 // currently only changes time of a reservation by given user at given restaurant
 // can refactor to add other modification options: party, username, etc
 const changeReservation = (req, res) => {
@@ -60,7 +71,6 @@ const changeReservation = (req, res) => {
 };
 
 const cancelReservation = (req, res) => {
-  console.log('received request to cancel');
   let { user } = req.query;
   let { id } = req.params;
   let query = `DELETE FROM reservations WHERE id=${id} and user='${user}' IF EXISTS;`;
@@ -77,6 +87,7 @@ const cancelReservation = (req, res) => {
 };
 
 module.exports = {
+  getRestaurantInfo,
   getReservation,
   postReservation,
   changeReservation,

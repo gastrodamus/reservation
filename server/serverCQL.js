@@ -1,5 +1,6 @@
 const express = require('express');
-const db = require('./db/index');
+const path = require('path')
+// const db = require('./db/index');
 const controllers = require('./db/cassandra.js');
 
 const router = express.Router();
@@ -8,6 +9,10 @@ const port = 3001;
 
 app.use('/', router);
 app.use(express.json());
+
+app.use('/:id', express.static(path.resolve(__dirname, '..', 'client', 'dist')));
+
+router.get('/:id/restaurant', controllers.getRestaurantInfo);
 
 router.get('/:id/reservation', controllers.getReservation);
 router.post('/:id/reservation', controllers.postReservation);
