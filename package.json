@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack -d --w",
-    "start": "node server/index.js",
+    "start": "nodemon server/serverCQL.js",
     "database": "mysql -uroot < server/db/schema.sql",
     "seed": "node ./server/db/seed.js",
     "cass:csv": "node ./server/db/cassSeed.js",

@@ -1,12 +1,9 @@
-const mysql = require('mysql');
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'munch',
-  // password: 'password'
+const cassandra = require('cassandra-driver');
+const client = new cassandra.Client({ 
+  contactPoints: ['localhost'],
+  localDataCenter: 'datacenter1',
+  keyspace: 'gastrodamus',
 });
 
-connection.connect();
-
-module.exports = connection;
+module.exports = client;
