@@ -11,4 +11,6 @@ app.use(express.json());
 
 router.get('/:id/reservation', controllers.getReservation);
 
+router.post('/:id/reservation', controllers.postReservation);
+
 app.listen(port, () => console.log(`reservations server listening on port ${port}`));
