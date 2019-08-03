@@ -8,3 +8,4 @@ postRes.csv
 postRest.csv
 newrelic
 cassandra/queries.cql
+newrelic_agent.log
