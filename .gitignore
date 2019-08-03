@@ -6,6 +6,5 @@ reservations.csv
 restaurants.csv
 postRes.csv
 postRest.csv
-cassandra
-postgres
 newrelic
+cassandra/queries.cql

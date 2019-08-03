@@ -21,11 +21,23 @@ class App extends React.Component {
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
-
+  // on didmount, determines which restaurant we're looking at
+  // determines how many total seats that restaurant has available
   componentDidMount() {
     const urlStrings = location.href.split('/');
     let restaurantId = urlStrings[urlStrings.length - 2];
-    this.setState({ restaurantId });
+    this.setState({ restaurantId }, () => {
+      axios.get(`/${this.state.restaurantId}/restaurant`, { 
+      })
+      .then((results) => {
+        this.setState({
+          spotLeft: results.data.max
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    });
   }
 
   onSubmitHandler(event) {
@@ -46,20 +58,20 @@ class App extends React.Component {
   }
 
   checkReservation() {
-    var timestamp = moment(
+    var time = moment(
       this.state.chosenDay.format(
         'YYYY MM DD ' + this.state.chosenTime), 'YYYY MM DD HHmm')
           .unix() - 25200; // UTC -> PST
-    axios.get(`/reservation/${this.state.restaurantId}`, {
+    axios.get(`/${this.state.restaurantId}/reservation`, {
       params: {
-        timestamp: timestamp
+        time: time
       }
     })
       .then((results) => {
         if (results.data.length > 0) {
-          this.setState({
-            spotLeft: results.data[0].num_of_seat
-          });
+          // this.setState({
+          //   spotLeft: results.data[0].num_of_seat
+          // });
         }
       })
       .catch((err) => {
