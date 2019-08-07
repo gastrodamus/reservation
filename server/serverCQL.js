@@ -13,9 +13,9 @@ app.use(express.json());
 
 app.use('/:id', express.static(path.resolve(__dirname, '..', 'client', 'dist')));
 
+router.get('/:id/reservation', controllers.getReservation);
 router.get('/:id/restaurant', controllers.getRestaurantInfo);
 
-router.get('/:id/reservation', controllers.getReservation);
 router.post('/:id/reservation', controllers.postReservation);
 router.put('/:id/reservation', controllers.changeReservation);
 router.delete('/:id/reservation', controllers.cancelReservation);

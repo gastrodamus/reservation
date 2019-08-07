@@ -3,6 +3,13 @@ package-lock.json
 client/dist/bundle.js
 coverage
 reservations.csv
+reservations2.csv
+reservations3.csv
+reservations4.csv
+reservations5.csv
+reservations6.csv
+reservations7.csv
+reservations8.csv
 restaurants.csv
 postRes.csv
 postRest.csv
