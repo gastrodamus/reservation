@@ -13,7 +13,9 @@
     "pg:csv": "node ./server/db/pgSeed.js",
     "pg:seed": "psql -d gastrodamus < ./postgres/createAndCopy.sql",
     "lint": "eslint --ext .js --ext .jsx . --fix",
-    "test": "jest"
+    "test": "jest",
+    "loadtest:get": "k6 run ./server/k6get.js",
+    "loadtest:post": "k6 run ./server/k6post.js"
   },
   "repository": {
     "type": "git",

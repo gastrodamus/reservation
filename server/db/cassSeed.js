@@ -2,10 +2,16 @@ const fs = require('fs');
 const faker = require('faker');
 const restaurantWriter = fs.createWriteStream('restaurants.csv');
 const reservationWriter = fs.createWriteStream('reservations.csv');
+const reservationWriter2 = fs.createWriteStream('reservations2.csv');
+const reservationWriter3 = fs.createWriteStream('reservations3.csv');
+const reservationWriter4 = fs.createWriteStream('reservations4.csv');
+const reservationWriter5 = fs.createWriteStream('reservations5.csv');
+const reservationWriter6 = fs.createWriteStream('reservations6.csv');
+const reservationWriter7 = fs.createWriteStream('reservations7.csv');
+const reservationWriter8 = fs.createWriteStream('reservations8.csv');
 
 var count = 0;
 var originalTime = 1564642800; // August 1st 2019 at 12 AM Pacific in Unix Time
-var code = 1564642800;
 var startTime = 1564707600 // August 1st 2019 at 6 PM Pacific in Unix Time
 function randomRange(min, max) { // random number between min (inclusive) and max (exclusive);
  return Math.floor(Math.random() * (max - min)) + min;
@@ -23,8 +29,7 @@ const randomRestaurant = () => {
   let min_party = 2 + Math.floor(Math.random() * 3); // 2-4
   let max_party = 4 + Math.floor(Math.random() * 5); // 4-8
   let max = 5 * (3 + Math.floor(Math.random() * 8)); //15 to 50 in increments of 5
-  restaurant.push(count, restaurant_name, open, close, step, min_party, max_party, max, 0, 0, 0, code);
-  code--;
+  restaurant.push(count, restaurant_name, open, close, step, min_party, max_party, max, 0, 0, 0);
   restaurant = restaurant.join(',');
   restaurant = restaurant + '\n';
 
@@ -54,9 +59,8 @@ const randomRestaurant = () => {
       timestamp = originalTime + (open * 3600) + (Math.floor(Math.random()*timeframe)*3600);
     }
     const reservation_size = randomRange(min_party, max_party + 1);
-  
-    code--;
-    reservationsArr.push(count, timestamp, reservation_size, faker.internet.userName(), code);
+
+    reservationsArr.push(count, timestamp, reservation_size, faker.internet.userName());
     let reservationEntry = reservationsArr.join(',');
     reservationEntry += '\n';
     reservations += reservationEntry;
@@ -68,7 +72,7 @@ const randomRestaurant = () => {
 
 var data = 0;
 const writeAll = (restaurantWriter, reservationWriter, data, encoding, callback) => {
-  let i = 10000000;
+  let i = 1000000;
   write();
   function write() {
     let ok = true;
@@ -77,6 +81,24 @@ const writeAll = (restaurantWriter, reservationWriter, data, encoding, callback)
       data = randomRestaurant();
       restaurantData = data[0];
       reservationData = data[1];
+      //make if statements to write to one of 8 reservation csvs
+      // if (i < 1250000) {
+      //   reservationWriter = reservationWriter8;
+      // } else if (i < 2500000) {
+      //   reservationWriter = reservationWriter7;
+      // } else if (i < 3750000) {
+      //   reservationWriter = reservationWriter6;
+      // } else if (i < 5000000) {
+      //   reservationWriter = reservationWriter5;
+      // } else if (i < 6250000) {
+      //   reservationWriter = reservationWriter4;
+      // } else if (i < 7500000) {
+      //   reservationWriter = reservationWriter3;
+      // } else if (i < 8750000) {
+      //   reservationWriter = reservationWriter2;
+      // } else {
+      //   reservationWriter = reservationWriter;
+      // }
       if (i === 0) {
         // Last time!
         restaurantWriter.write(restaurantData, encoding, callback);
